@@ -1,0 +1,18 @@
+when:
+  instance: ci.schnabel.org
+  repo: kokuwaio/dockerhub-metadata
+  event: push
+  branch: main
+  path: [.woodpecker/dockerhub.yaml, .woodpecker/build.yaml, .woodpecker/push.yaml, Dockerfile, Dockerfile.dockerignore, entrypoint.sh, README.md]
+
+steps:
+
+  metadata:
+    image: kokuwaio/dockerhub-metadata
+    pull: true
+    settings:
+      repository: kokuwaio/dockerhub-metadata
+      description-short: A Woodpecker CI plugin to write metadata to DockerHub repositories.
+      categories: [developer-tools, integration-and-delivery]
+      username: {from_secret: DOCKERHUB_USERNAME}
+      password: {from_secret: DOCKERHUB_PASSWORD}
