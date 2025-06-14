@@ -1,0 +1,20 @@
+{
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": ["local>infrastructure/renovate-config", ":reviewer(stephan.schnabel)"]	,
+		"customManagers": [
+			{
+				"customType": "regex",
+				"managerFilePatterns": ["Dockerfile"],
+				"matchStrings": ["github.com/jqlang/jq/releases/download/(?<currentValue>jq-[0-9]+\\.[0-9]+\\.[0-9]+)/jq-linux-\\$SUFFIX"],
+				"datasourceTemplate": "github-releases",
+				"packageNameTemplate": "jqlang/jq",
+				"versioningTemplate": "regex:^jq-?(?<major>[0-9]+)\\.(?<minor>[0-9]+)\\.(?<patch>[0-9]+)?$"
+			},{
+				"customType": "regex",
+				"managerFilePatterns": ["Dockerfile"],
+				"matchStrings": ["github.com/stunnel/static-curl/releases/download/(?<currentValue>[0-9]+\\.[0-9]+\\.[0-9]+)/curl-linux-\\$SUFFIX-glibc", "glibc-(?<currentValue>[0-9]+\\.[0-9]+\\.[0-9]+).tar.xz"],
+				"datasourceTemplate": "github-releases",
+				"packageNameTemplate": "stunnel/static-curl"
+			}
+		]
+}
