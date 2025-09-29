@@ -15,11 +15,7 @@
 
 # Build image with local docker daemon.
 @build:
-	docker build . --tag=kokuwaio/dockerhub-metadata:dev --load
-
-# Inspect image with docker.
-@inspect: build
-	docker image inspect kokuwaio/dockerhub-metadata:dev
+	docker buildx build . --platform=linux/amd64,linux/arm64
 
 # Inspect image layers with `dive`.
 @dive:

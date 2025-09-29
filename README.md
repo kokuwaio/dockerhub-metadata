@@ -23,6 +23,7 @@ Woodpecker:
 ```yaml
 steps:
   dockerhub:
+    depends_on: []
     image: kokuwaio/dockerhub-metadata
     settings:
       repository: kokuwaio/example-image
@@ -36,12 +37,16 @@ steps:
       path: README.md
 ```
 
-Gitlab:
+Gitlab: (using script is needed because of <https://gitlab.com/gitlab-org/gitlab/-/issues/19717>)
 
 ```yaml
 dockerhub:
+  needs: []
   stage: deploy
-  image: kokuwaio/hadolint
+  image:
+    name: kokuwaio/dockerhub-metadata
+    entrypoint: [""]
+  script: [/usr/local/bin/entrypoint.sh]
   variables:
     PLUGIN_REPOSITORY: kokuwaio/example-image
     PLUGIN_DESCRIPTION_SHORT: This image does that!
