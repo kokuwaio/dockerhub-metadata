@@ -17,7 +17,7 @@ RUN ARCH=$(uname -m) && \
 	[[ $ARCH == x86_64 ]] && export SUFFIX=x86_64; \
 	[[ $ARCH == aarch64 ]] && export SUFFIX=aarch64; \
 	[[ -z ${SUFFIX:-} ]] && echo "Unknown arch: $ARCH" && exit 1; \
-	wget -q "https://github.com/stunnel/static-curl/releases/download/8.16.0/curl-linux-$SUFFIX-glibc-8.16.0.tar.xz" --output-document=- | tar --xz --extract -o --directory=/usr/local/bin curl && \
+	wget -q "https://github.com/stunnel/static-curl/releases/download/8.17.0/curl-linux-$SUFFIX-glibc-8.17.0.tar.xz" --output-document=- | tar --xz --extract -o --directory=/usr/local/bin curl && \
 	chmod 555 /usr/local/bin/curl
 
 COPY --chmod=555 entrypoint.sh /usr/local/bin/entrypoint.sh
